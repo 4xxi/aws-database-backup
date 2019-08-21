@@ -57,7 +57,7 @@ then
         logcontents=$(cat /tmp/aws-database-backup.log)
 
         # Send Slack alert
-        /slack-alert.sh "One or more backups on database host *$DB_HOST* failed. The error details are included below:" "``$($logcontents)``"
+        /slack-alert.sh "One or more backups on databases *$TARGET_DATABASE_NAMES* failed. The error details are included below:" "``$($logcontents)``"
     fi
 
     echo -e "aws-database-backup encountered 1 or more errors. Exiting with status code 1."
@@ -68,7 +68,7 @@ else
     # If Slack alerts are enabled, send a notification that all database backups were successful
     if [ "$SLACK_ENABLED" = true ]
     then
-        /slack-alert.sh "All database backups successfully completed on database host *$DB_HOST*."
+        /slack-alert.sh "All database backups successfully completed for databases *$TARGET_DATABASE_NAMES*."
     fi
 
     exit 0
