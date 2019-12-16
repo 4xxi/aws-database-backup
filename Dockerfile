@@ -7,7 +7,7 @@ RUN apk -v --update add \
         groff \
         less \
         mailcap \
-        mysql-client \
+        mariadb-client \
         postgresql \
         openssl \
         curl \
